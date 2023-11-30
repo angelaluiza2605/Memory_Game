@@ -3,6 +3,9 @@ function backPage() {
   // console.log(playerResp);
   if (playerResp) {
     window.history.back();
+    if(playerResp){
+      window.history.back();
+    }
   }
 }
 function createCards() {
@@ -54,6 +57,7 @@ function checkGameWin() {
   if (disabledCards.length === 24) {
     clearInterval(finishTimerInterval);
 
+    gameIsFinished = true;
     const userData = {
       name: storangePlayerName,
       time: timer.textContent,
@@ -69,7 +73,8 @@ function checkGameWin() {
 
     alert(
       `parabens ${storangePlayerName} voce venceu com o tempo de ${timer.innerHTML}`
-    );
+      );
+      backPage();
   }
 }
 
@@ -135,7 +140,7 @@ playerName.innerHTML = storangePlayerName;
 backButton.addEventListener("click", backPage);
 
 createCards();
-
+let gameIsFinished = false;
 let firstCard = "";
 let secondCard = "";
 clickFlipCard();
